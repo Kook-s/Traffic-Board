@@ -11,6 +11,8 @@ import kuke.board.common.snowflake.Snowflake;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ArticleService {
@@ -59,6 +61,12 @@ public class ArticleService {
         );
     }
 
+    public List<ArticleResponse> readAllInfiniteScroll(Long boardId, Long pageSize, Long lastArticle) {
+        List<Article> articles = lastArticle == null ?
+                articleRepository.findAllInfiniteScroll(boardId, pageSize) :
+                articleRepository.findAllInfiniteScroll(boardId, pageSize, lastArticle);
 
+        return articles.stream().map(ArticleResponse::from).toList();
+    }
 
 }
