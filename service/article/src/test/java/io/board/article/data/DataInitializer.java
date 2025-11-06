@@ -1,4 +1,4 @@
-package io.board.article.date;
+package io.board.article.data;
 
 import io.board.article.entity.Article;
 import jakarta.persistence.EntityManager;
