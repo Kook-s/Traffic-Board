@@ -20,11 +20,11 @@ public class CommentPath {
 
     // MIN_CHUNK = "00000" MAX_CHUNK = "zzzzz"
     private static final String MIN_CHUNK = String.valueOf(CHARSET.charAt(0)).repeat(DEPTH_CHUNK_SIZE);
-    private static final String MAX_CHUNK = String.valueOf(CHARSET.length() - 1).repeat(DEPTH_CHUNK_SIZE);
+    private static final String MAX_CHUNK = String.valueOf(CHARSET.charAt(CHARSET.length() - 1)).repeat(DEPTH_CHUNK_SIZE);
 
     public static CommentPath create(String path) {
         if(isDepthOverflow(path)){
-            throw new IllegalStateException("depth overflow");
+            throw new IllegalStateException("depth overflowed");
         }
         CommentPath commentPath = new CommentPath();
         commentPath.path = path;
@@ -68,7 +68,7 @@ public class CommentPath {
         // 00000 00000
         String lastChunk = path.substring(path.length() - DEPTH_CHUNK_SIZE);
         if (isChunkOverflow(lastChunk)) {
-            throw new IllegalStateException("chunk overflow");
+            throw new IllegalStateException("chunk overflowed");
         }
         int charsetLength = CHARSET.length();
 
