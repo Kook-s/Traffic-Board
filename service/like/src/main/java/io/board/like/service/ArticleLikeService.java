@@ -81,7 +81,7 @@ public class ArticleLikeService {
                 .orElseGet(() -> ArticleLikeCount.init(articleId, 0L));
 
         articleLikeCount.increase();
-//        articleLikeCountRepository.save(articleLikeCount);
+        articleLikeCountRepository.save(articleLikeCount);
     }
 
     /**
@@ -111,7 +111,7 @@ public class ArticleLikeService {
         ArticleLikeCount articleLikeCount = articleLikeCountRepository.findById(articleId)
                 .orElseGet(() -> ArticleLikeCount.init(articleId, 0L));
         articleLikeCount.increase();
-        articleLikeCountRepository.save(articleLikeCount);
+//        articleLikeCountRepository.save(articleLikeCount);
 
     }
 

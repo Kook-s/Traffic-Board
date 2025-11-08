@@ -28,9 +28,9 @@ public class LikeApiTest {
         System.out.println("response2 = " + response2);
         System.out.println("response3 = " + response3);
 
-        unLike(articleId, 1L);
-        unLike(articleId, 2L);
-        unLike(articleId, 3L);
+        unLike(articleId, 1L, "pessimistic-lock-1");
+        unLike(articleId, 2L, "pessimistic-lock-1");
+        unLike(articleId, 3L, "pessimistic-lock-1");
 
     }
 
@@ -41,9 +41,9 @@ public class LikeApiTest {
                 .toBodilessEntity();
     }
 
-    void unLike(Long articleId, Long userId) {
+    void unLike(Long articleId, Long userId, String lockType) {
         restClient.delete()
-                .uri("/v1/article-like/articles/{articleId}/users/{userId}", articleId, userId)
+                .uri("/v1/article-like/articles/{articleId}/users/{userId}/"+ lockType, articleId, userId)
                 .retrieve()
                 .toBodilessEntity();
     }
@@ -85,7 +85,7 @@ public class LikeApiTest {
         System.out.println(lockType + " end");
 
         Long count = restClient.get()
-                .uri("/v1/article-like/articles/{articleId}")
+                .uri("/v1/article-like/articles/{articleId}", articleId)
                 .retrieve()
                 .body(Long.class);
 
