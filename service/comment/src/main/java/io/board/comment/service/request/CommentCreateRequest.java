@@ -1,4 +1,4 @@
-package io.board.comment.service.reqeust;
+package io.board.comment.service.request;
 
 import lombok.Getter;
 
