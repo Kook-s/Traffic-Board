@@ -1,12 +1,12 @@
-package io.board.comment.service.reqeust;
+package io.board.comment.service.request;
 
 import lombok.Getter;
 
 @Getter
-public class CommentCreateRequestV2 {
+public class CommentCreateRequest {
 
     private Long articleId;
     private String content;
-    private String parentPath;
+    private Long parentCommentId;
     private Long writerId;
 }

@@ -1,9 +1,7 @@
 package io.board.comment.controller;
 
-import io.board.comment.service.CommentService;
 import io.board.comment.service.CommentServiceV2;
-import io.board.comment.service.reqeust.CommentCreateRequest;
-import io.board.comment.service.reqeust.CommentCreateRequestV2;
+import io.board.comment.service.request.CommentCreateRequestV2;
 import io.board.comment.service.response.CommentPageResponse;
 import io.board.comment.service.response.CommentResponse;
 import lombok.RequiredArgsConstructor;

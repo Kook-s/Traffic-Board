@@ -2,12 +2,11 @@ package io.board.comment.service;
 
 import io.board.comment.entity.Comment;
 import io.board.comment.repository.CommentRepository;
-import io.board.comment.service.reqeust.CommentCreateRequest;
+import io.board.comment.service.request.CommentCreateRequest;
 import io.board.comment.service.response.CommentPageResponse;
 import io.board.comment.service.response.CommentResponse;
 import kuke.board.common.snowflake.Snowflake;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

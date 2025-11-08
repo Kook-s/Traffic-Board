@@ -3,7 +3,7 @@ package io.board.comment.service;
 import io.board.comment.entity.CommentPath;
 import io.board.comment.entity.CommentV2;
 import io.board.comment.repository.CommentRepositoryV2;
-import io.board.comment.service.reqeust.CommentCreateRequestV2;
+import io.board.comment.service.request.CommentCreateRequestV2;
 import io.board.comment.service.response.CommentPageResponse;
 import io.board.comment.service.response.CommentResponse;
 import kuke.board.common.snowflake.Snowflake;
