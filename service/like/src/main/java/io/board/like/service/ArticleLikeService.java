@@ -6,7 +6,7 @@ import io.board.like.repository.ArticleLikeCountRepository;
 import io.board.like.repository.ArticleLikeRepository;
 import io.board.like.service.response.ArticleLikeResponse;
 import jakarta.persistence.EntityManager;
-import kuke.board.common.snowflake.Snowflake;
+import io.board.common.event.Snowflake;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
