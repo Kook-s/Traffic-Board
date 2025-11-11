@@ -1,4 +1,4 @@
-package kuke.board.common.snowflake;
+package io.board.common.event;
 
 import static org.assertj.core.api.Assertions.*;
 
