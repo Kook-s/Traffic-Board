@@ -10,10 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public enum EventType {
     ARTICLE_CREATED(ArticleCreatedEventPayload.class, Topic.BOARD_ARTICLE),
-    ARTICLE_UPDATE(ArticleUpdatedEventPayload.class, Topic.BOARD_ARTICLE),
-    ARTICLE_DELETE(ArticleDeletedEventPayload.class, Topic.BOARD_ARTICLE),
+    ARTICLE_UPDATED(ArticleUpdatedEventPayload.class, Topic.BOARD_ARTICLE),
+    ARTICLE_DELETED(ArticleDeletedEventPayload.class, Topic.BOARD_ARTICLE),
     COMMENT_CREATED(CommentCreatedEventPayload.class, Topic.BOARD_COMMENT),
-    COMMENT_DELETE(CommentDeletedEventPayload.class, Topic.BOARD_COMMENT),
+    COMMENT_DELETED(CommentDeletedEventPayload.class, Topic.BOARD_COMMENT),
     ARTICLE_LIKED(ArticleLikedEventPayload.class, Topic.BOARD_LIKE),
     ARTICLE_UNLIKED(ArticleUnlikedEventPayload.class, Topic.BOARD_LIKE),
     ARTICLE_VIEWED(ArticleViewEventPayload.class, Topic.BOARD_VIEW),;
