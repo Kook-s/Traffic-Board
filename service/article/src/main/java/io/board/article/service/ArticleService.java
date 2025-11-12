@@ -9,7 +9,7 @@ import io.board.article.service.request.ArticleUpdateRequest;
 import io.board.article.service.response.ArticlePageResponse;
 import io.board.article.service.response.ArticleResponse;
 import jakarta.transaction.Transactional;
-import kuke.board.common.snowflake.Snowflake;
+import io.board.common.event.Snowflake;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

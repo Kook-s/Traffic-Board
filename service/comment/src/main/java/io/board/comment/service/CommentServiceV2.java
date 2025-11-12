@@ -8,7 +8,7 @@ import io.board.comment.repository.CommentRepositoryV2;
 import io.board.comment.service.request.CommentCreateRequestV2;
 import io.board.comment.service.response.CommentPageResponse;
 import io.board.comment.service.response.CommentResponse;
-import kuke.board.common.snowflake.Snowflake;
+import io.board.common.event.Snowflake;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
