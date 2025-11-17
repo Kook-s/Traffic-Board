@@ -1,6 +1,6 @@
 package io.board.hotarticle.service;
 
-import io.board.common.event.Event;
+import io.board.common.outboxmessagerelay.Event;
 import io.board.hotarticle.repository.ArticleCreatedTimeRepository;
 import io.board.hotarticle.repository.HotArticleListRepository;
 import io.board.hotarticle.service.eventhandler.EventHandler;
@@ -13,7 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 

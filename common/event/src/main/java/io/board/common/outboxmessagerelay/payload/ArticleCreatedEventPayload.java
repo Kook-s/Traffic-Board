@@ -1,6 +1,6 @@
-package io.board.common.event.payload;
+package io.board.common.outboxmessagerelay.payload;
 
-import io.board.common.event.EventPayload;
+import io.board.common.outboxmessagerelay.EventPayload;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ArticleDeletedEventPayload implements EventPayload {
+public class ArticleCreatedEventPayload implements EventPayload {
     private Long articleId;
     private String title;
     private String content;

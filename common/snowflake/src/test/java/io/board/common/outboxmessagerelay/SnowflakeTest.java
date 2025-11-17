@@ -1,4 +1,4 @@
-package io.board.common.event;
+package io.board.common.outboxmessagerelay;
 
 import static org.assertj.core.api.Assertions.*;
 

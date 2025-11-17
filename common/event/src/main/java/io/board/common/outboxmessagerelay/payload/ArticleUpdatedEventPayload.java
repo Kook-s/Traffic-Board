@@ -1,6 +1,6 @@
-package io.board.common.event.payload;
+package io.board.common.outboxmessagerelay.payload;
 
-import io.board.common.event.EventPayload;
+import io.board.common.outboxmessagerelay.EventPayload;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

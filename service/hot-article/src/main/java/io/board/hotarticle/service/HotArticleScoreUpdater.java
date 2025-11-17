@@ -1,7 +1,7 @@
 package io.board.hotarticle.service;
 
-import io.board.common.event.Event;
-import io.board.common.event.EventPayload;
+import io.board.common.outboxmessagerelay.Event;
+import io.board.common.outboxmessagerelay.EventPayload;
 import io.board.hotarticle.repository.ArticleCreatedTimeRepository;
 import io.board.hotarticle.repository.HotArticleListRepository;
 import io.board.hotarticle.service.eventhandler.EventHandler;

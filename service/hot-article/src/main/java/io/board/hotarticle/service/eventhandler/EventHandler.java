@@ -1,7 +1,7 @@
 package io.board.hotarticle.service.eventhandler;
 
-import io.board.common.event.Event;
-import io.board.common.event.EventPayload;
+import io.board.common.outboxmessagerelay.Event;
+import io.board.common.outboxmessagerelay.EventPayload;
 
 public interface EventHandler<T extends EventPayload> {
 

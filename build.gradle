@@ -6,7 +6,7 @@ plugins {
 
 group = 'io'
 version = '0.0.1-SNAPSHOT'
-description = 'borad'
+description = 'board'
 
 allprojects {
     repositories {

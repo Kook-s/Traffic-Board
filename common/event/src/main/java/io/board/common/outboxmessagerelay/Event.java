@@ -1,4 +1,4 @@
-package io.board.common.event;
+package io.board.common.outboxmessagerelay;
 
 import io.board.common.dataserializer.DataSerializer;
 import lombok.Getter;
