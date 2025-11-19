@@ -9,9 +9,9 @@ import java.util.List;
 
 @Repository
 public interface OutboxRepository extends JpaRepository<Outbox, Long> {
-    List<Outbox> findByShardKeyAndCreatedAtLessThanEqualOrderByCreatedAtAsc(
+    List<Outbox> findAllByShardKeyAndCreatedAtLessThanEqualOrderByCreatedAtAsc(
             Long shardKey,
-            LocalDateTime createdAt,
+            LocalDateTime from,
             Pageable pageable
     );
 }

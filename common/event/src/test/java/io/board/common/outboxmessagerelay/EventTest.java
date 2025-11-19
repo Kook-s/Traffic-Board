@@ -1,6 +1,9 @@
 package io.board.common.outboxmessagerelay;
 
-import io.board.common.outboxmessagerelay.payload.ArticleCreatedEventPayload;
+import io.board.common.event.Event;
+import io.board.common.event.EventPayload;
+import io.board.common.event.EventType;
+import io.board.common.event.payload.ArticleCreatedEventPayload;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;

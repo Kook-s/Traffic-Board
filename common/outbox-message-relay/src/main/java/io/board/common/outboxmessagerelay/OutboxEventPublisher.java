@@ -1,5 +1,9 @@
 package io.board.common.outboxmessagerelay;
 
+import io.board.common.event.Event;
+import io.board.common.event.EventPayload;
+import io.board.common.event.EventType;
+import io.board.common.snowflake.Snowflake;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
@@ -18,7 +22,7 @@ public class OutboxEventPublisher {
                 Event.of(
                         eventIdSnowflake.nextId(), type, payload
                 ).toJson(),
-                shardKey & MessageRelayConstants.SHARD_COUNT
+                shardKey % MessageRelayConstants.SHARD_COUNT
         );
 
         applicationEventPublisher.publishEvent(OutboxEvent.of(outbox));

@@ -32,7 +32,7 @@ public class MessageRelayCoordinator {
     }
 
     private List<String> findAppIds() {
-        return redisTemplate.opsForZSet().reverseRange(generatorKey(), 0, -1).stream()
+        return redisTemplate.opsForZSet().reverseRange(generateKey(), 0, -1).stream()
                 .sorted()
                 .toList();
     }
@@ -41,7 +41,7 @@ public class MessageRelayCoordinator {
     public void ping() {
         redisTemplate.executePipelined((RedisCallback<?>) action -> {
             StringRedisConnection conn = (StringRedisConnection) action;
-            String key = generatorKey();
+            String key = generateKey();
             conn.zAdd(key, Instant.now().toEpochMilli(), APP_ID);
             conn.zRemRangeByScore(
                     key,
@@ -54,10 +54,10 @@ public class MessageRelayCoordinator {
 
     @PreDestroy
     public void leave() {
-        redisTemplate.opsForZSet().remove(generatorKey(), APP_ID);
+        redisTemplate.opsForZSet().remove(generateKey(), APP_ID);
     }
 
-    private String generatorKey() {
+    private String generateKey() {
         return "message-relay-coordinator::app-list::%s".formatted(applicationName);
     }
 }

@@ -1,8 +1,8 @@
 package io.board.hotarticle.consumer;
 
-import io.board.common.outboxmessagerelay.Event;
-import io.board.common.outboxmessagerelay.EventPayload;
-import io.board.common.outboxmessagerelay.EventType;
+import io.board.common.event.Event;
+import io.board.common.event.EventPayload;
+import io.board.common.event.EventType;
 import io.board.hotarticle.service.HotArticleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

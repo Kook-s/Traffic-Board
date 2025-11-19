@@ -20,7 +20,7 @@ public class ArticleLikeController {
         return articleLikeService.read(articleId, userId);
     }
 
-    @GetMapping("/v1/article-like/articles/{articleId}")
+    @GetMapping("/v1/article-like/articles/{articleId}/count")
     public Long count(
             @PathVariable("articleId") Long articleId
     ) {
