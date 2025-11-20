@@ -1,7 +1,9 @@
 package io.board.articleread.service.event.handler;
 
+import io.board.articleread.repository.ArticleIdListRepository;
 import io.board.articleread.repository.ArticleQueryModel;
 import io.board.articleread.repository.ArticleQueryModelRepository;
+import io.board.articleread.repository.BoardArticleCountRepository;
 import io.board.common.event.Event;
 import io.board.common.event.EventType;
 import io.board.common.event.payload.ArticleCreatedEventPayload;
@@ -14,6 +16,8 @@ import java.time.Duration;
 @RequiredArgsConstructor
 public class ArticleCreatedEventHandler implements EventHandler<ArticleCreatedEventPayload> {
 
+    private final ArticleIdListRepository articleIdListRepository; //게시글 아이디 목록
+    private final BoardArticleCountRepository boardArticleCountRepository; // 게시글 수를 저장
     private final ArticleQueryModelRepository articleQueryModelRepository;
 
     @Override
@@ -23,6 +27,8 @@ public class ArticleCreatedEventHandler implements EventHandler<ArticleCreatedEv
                 ArticleQueryModel.create(payload),
                 Duration.ofDays(1)
         );
+        articleIdListRepository.add(payload.getBoardId(), payload.getArticleId(), 1000L);
+        boardArticleCountRepository.createOrUpdate(payload.getBoardId(), payload.getBoardArticleCount());
     }
 
     @Override
