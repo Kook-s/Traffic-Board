@@ -1,8 +1,8 @@
 package io.board.hotarticle.service.eventhandler;
 
-import io.board.common.outboxmessagerelay.Event;
-import io.board.common.outboxmessagerelay.EventType;
-import io.board.common.outboxmessagerelay.payload.ArticleCreatedEventPayload;
+import io.board.common.event.Event;
+import io.board.common.event.EventType;
+import io.board.common.event.payload.ArticleCreatedEventPayload;
 import io.board.hotarticle.repository.ArticleCreatedTimeRepository;
 import io.board.hotarticle.utils.TimeCalculatorUtils;
 import lombok.RequiredArgsConstructor;

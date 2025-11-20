@@ -1,8 +1,8 @@
 package io.board.view.service;
 
-import io.board.common.outboxmessagerelay.EventType;
+import io.board.common.event.EventType;
 import io.board.common.outboxmessagerelay.OutboxEventPublisher;
-import io.board.common.outboxmessagerelay.payload.ArticleViewEventPayload;
+import io.board.common.event.payload.ArticleViewEventPayload;
 import io.board.view.entity.ArticleViewCount;
 import io.board.view.repository.ArticleViewCountBackUpRepository;
 import lombok.RequiredArgsConstructor;

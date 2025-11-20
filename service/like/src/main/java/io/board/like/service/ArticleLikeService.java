@@ -1,16 +1,16 @@
 package io.board.like.service;
 
-import io.board.common.outboxmessagerelay.EventType;
+import io.board.common.event.EventType;
 import io.board.common.outboxmessagerelay.OutboxEventPublisher;
-import io.board.common.outboxmessagerelay.payload.ArticleLikedEventPayload;
-import io.board.common.outboxmessagerelay.payload.ArticleUnlikedEventPayload;
+import io.board.common.event.payload.ArticleLikedEventPayload;
+import io.board.common.event.payload.ArticleUnlikedEventPayload;
 import io.board.like.entity.ArticleLike;
 import io.board.like.entity.ArticleLikeCount;
 import io.board.like.repository.ArticleLikeCountRepository;
 import io.board.like.repository.ArticleLikeRepository;
 import io.board.like.service.response.ArticleLikeResponse;
 import jakarta.persistence.EntityManager;
-import io.board.common.outboxmessagerelay.Snowflake;
+import io.board.common.snowflake.Snowflake;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,5 +1,6 @@
 package io.board.common.outboxmessagerelay;
 
+import io.board.common.event.EventType;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
