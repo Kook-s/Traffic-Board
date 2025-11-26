@@ -1,0 +1,193 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:9002
+  description: Generated server url
+paths:
+  /v1/article-like/articles/{articleId}/users/{userId}/pessimistic-lock-2:
+    post:
+      tags:
+      - article-like-controller
+      operationId: likePessimisticLock2
+      parameters:
+      - name: articleId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+    delete:
+      tags:
+      - article-like-controller
+      operationId: unLikePessimisticLock2
+      parameters:
+      - name: articleId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /v1/article-like/articles/{articleId}/users/{userId}/pessimistic-lock-1:
+    post:
+      tags:
+      - article-like-controller
+      operationId: likePessimisticLock1
+      parameters:
+      - name: articleId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+    delete:
+      tags:
+      - article-like-controller
+      operationId: unLikePessimisticLock1
+      parameters:
+      - name: articleId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /v1/article-like/articles/{articleId}/users/{userId}/optimistic-lock:
+    post:
+      tags:
+      - article-like-controller
+      operationId: likeOptimisticLock3
+      parameters:
+      - name: articleId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+    delete:
+      tags:
+      - article-like-controller
+      operationId: unLikeOptimisticLock2
+      parameters:
+      - name: articleId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /v1/article-like/articles/{articleId}/users/{userId}:
+    get:
+      tags:
+      - article-like-controller
+      operationId: read
+      parameters:
+      - name: articleId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ArticleLikeResponse"
+  /v1/article-like/articles/{articleId}/count:
+    get:
+      tags:
+      - article-like-controller
+      operationId: count
+      parameters:
+      - name: articleId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int64
+components:
+  schemas:
+    ArticleLikeResponse:
+      type: object
+      properties:
+        articleLikeId:
+          type: integer
+          format: int64
+        articleId:
+          type: integer
+          format: int64
+        userId:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time

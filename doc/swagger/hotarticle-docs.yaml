@@ -1,0 +1,41 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:9004
+  description: Generated server url
+paths:
+  /v1/hot-articles/articles/date/{dateStr}:
+    get:
+      tags:
+      - hot-article-controller
+      operationId: readAll
+      parameters:
+      - name: dateStr
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/HotArticleResponse"
+components:
+  schemas:
+    HotArticleResponse:
+      type: object
+      properties:
+        articleId:
+          type: integer
+          format: int64
+        title:
+          type: string
+        createdAt:
+          type: string
+          format: date-time

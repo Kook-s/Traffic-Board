@@ -1,0 +1,324 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:9001
+  description: Generated server url
+paths:
+  /v2/comments:
+    get:
+      tags:
+      - comment-controller-v-2
+      operationId: readAll
+      parameters:
+      - name: articleId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: pageSize
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CommentPageResponse"
+    post:
+      tags:
+      - comment-controller-v-2
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommentCreateRequestV2"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CommentResponse"
+  /v1/comments:
+    get:
+      tags:
+      - comment-controller
+      operationId: readAll_1
+      parameters:
+      - name: articleId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: pageSize
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CommentPageResponse"
+    post:
+      tags:
+      - comment-controller
+      operationId: create_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommentCreateRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CommentResponse"
+  /v2/comments/{commentId}:
+    get:
+      tags:
+      - comment-controller-v-2
+      operationId: read
+      parameters:
+      - name: commentId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CommentResponse"
+    delete:
+      tags:
+      - comment-controller-v-2
+      operationId: delete
+      parameters:
+      - name: commentId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /v2/comments/infinite-scroll:
+    get:
+      tags:
+      - comment-controller-v-2
+      operationId: readAllInfiniteScroll
+      parameters:
+      - name: articleId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: lastPath
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CommentResponse"
+  /v2/comments/articles/{articleId}/count:
+    get:
+      tags:
+      - comment-controller-v-2
+      operationId: count
+      parameters:
+      - name: articleId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int64
+  /v1/comments/{commentId}:
+    get:
+      tags:
+      - comment-controller
+      operationId: read_1
+      parameters:
+      - name: commentId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CommentResponse"
+    delete:
+      tags:
+      - comment-controller
+      operationId: delete_1
+      parameters:
+      - name: commentId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /v1/comments/infinite-scroll:
+    get:
+      tags:
+      - comment-controller
+      operationId: readAll_2
+      parameters:
+      - name: articleId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: lastParentCommentId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: lastCommentId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: pageSize
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CommentResponse"
+components:
+  schemas:
+    CommentCreateRequestV2:
+      type: object
+      properties:
+        articleId:
+          type: integer
+          format: int64
+        content:
+          type: string
+        parentPath:
+          type: string
+        writerId:
+          type: integer
+          format: int64
+    CommentResponse:
+      type: object
+      properties:
+        commentId:
+          type: integer
+          format: int64
+        content:
+          type: string
+        parentCommentId:
+          type: integer
+          format: int64
+        articleId:
+          type: integer
+          format: int64
+        writerId:
+          type: integer
+          format: int64
+        deleted:
+          type: boolean
+        path:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    CommentCreateRequest:
+      type: object
+      properties:
+        articleId:
+          type: integer
+          format: int64
+        content:
+          type: string
+        parentCommentId:
+          type: integer
+          format: int64
+        writerId:
+          type: integer
+          format: int64
+    CommentPageResponse:
+      type: object
+      properties:
+        comments:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommentResponse"
+        commentCount:
+          type: integer
+          format: int64

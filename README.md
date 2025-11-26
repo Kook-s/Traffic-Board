@@ -6,13 +6,30 @@
 또한 데이터 증가와 트래픽 급증에 대응하기 위해 샤딩 전략을 고려한 테이블 구조와 Outbox 기반 이벤트 발행 방식을 적용했습니다.
 읽기 기능은 별도의 Read 모델을 운영하고 Redis를 활용해 고성능 조회가 가능하도록 구성했습니다.
 
-## Teach Stack
+## Tech Stack
 - Java 17
 - Spring Boot 3.3.4
 - Database: MySQL
 - ORM: JPA
 - Cache/Lock: Redis
 - Messaging: Kafka
+
+## Project Structure
+```bash
+common
+├── data-serializer
+├── event
+├── outbox-message-relay
+└── snowflake
+
+service
+├── article
+├── article-read
+├── comment
+├── hot-article
+├── like
+└── view
+```
 
 ## Architecture & Optimization Overview
 ### CQRS 패턴 적용
@@ -45,6 +62,18 @@ flowchart LR
 Write 서비스는 게시글/댓글/좋아요 등 변경 데이터와 Outbox 이벤트를 한 번에 커밋하고,
 별도의 MessageRelay가 Outbox를 폴링하여 Kafka로 안전하게 이벤트를 발행합니다.
 이를 통해 이벤트 유실 없이 안정적인 비동기 데이터 전파 구조를 구현했습니다.
+```mermaid
+erDiagram
+outbox{
+    outbox_id BIGINT PK
+    event_type VARCHAR(100)
+    payload JSON
+    shard_key BIGINT
+    published BOOLEAN DEFAULT FALSE
+    created_at TIMESTAMP    
+}
+```
+
 ```mermaid
 flowchart LR
     %% 노드 정의
@@ -118,7 +147,7 @@ flowchart TB
         R2[서버 2]
     end
 ```
-### 고성은 Read 모델 구성(Redis 캐싱)
+### 고성능 Read 모델 구성(Redis 캐싱)
 Article-Read 서비스는 대규모 트래픽 상황에서도 안정적인 조회 성능을 유지하기 위해
 분산락 기반의 캐시 초기화 전략 + Logical TTL/Physical TTL 분리 전략을 함께 적용했습니다.
 
@@ -182,8 +211,25 @@ Read 서비스는 해당 이벤트를 구독하여 읽기 모델을 비동기적
 이 구조는 실시간성 있고 일관성 있는 조회 데이터를 유지하는 동시에
 Write DB와 Read DB의 부하를 완전히 분리하는 효과가 있습니다.
 
+#### Topic
+| Topic         | Event         | Description |
+|:--------------|---------------|-------------|
+| BOARD_ARTICLE | board-article | 게시글 이벤트     |
+| BOARD_COMMENT | board-comment | 댓글 이벤트      |
+| BOARD_LIKE    | board-like    | 좋아요 이벤트     |
+| BOARD_VIEW    | board-view    | 조회수 이벤트     |
+
 ## Document
 #### [ERD](./doc/erd.md)
+### swagger
+#### [swagger guide](./doc/swagger/swagger-guide.md)
+- [Article](./doc/swagger/article-docs.yaml)
+- [Comment](./doc/swagger/comment-docs.yaml)
+- [Like](./doc/swagger/like-docs.yaml)
+- [View](./doc/swagger/view-docs.yaml)
+- [HotArticle](./doc/swagger/hotarticle-docs.yaml)
+- [ReadArticle](./doc/swagger/readarticle-docs.yaml)
+
 
 ## How To Run
 Docker compose 파일을 따로 두지 않고, 개별로 실행함

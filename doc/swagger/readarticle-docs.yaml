@@ -1,0 +1,134 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:9005
+  description: Generated server url
+paths:
+  /v1/articles:
+    get:
+      tags:
+      - article-read-controller
+      operationId: readAll
+      parameters:
+      - name: boardId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: pageSize
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ArticleReadPageResponse"
+  /v1/articles/{articleId}:
+    get:
+      tags:
+      - article-read-controller
+      operationId: read
+      parameters:
+      - name: articleId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ArticleReadResponse"
+  /v1/articles/infinite-scroll:
+    get:
+      tags:
+      - article-read-controller
+      operationId: readAllInfiniteScroll
+      parameters:
+      - name: boardId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: lastArticleId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: pageSize
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ArticleReadResponse"
+components:
+  schemas:
+    ArticleReadPageResponse:
+      type: object
+      properties:
+        articles:
+          type: array
+          items:
+            $ref: "#/components/schemas/ArticleReadResponse"
+        articleCount:
+          type: integer
+          format: int64
+    ArticleReadResponse:
+      type: object
+      properties:
+        articleId:
+          type: integer
+          format: int64
+        title:
+          type: string
+        content:
+          type: string
+        boardId:
+          type: integer
+          format: int64
+        writerId:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        articleCommentCount:
+          type: integer
+          format: int64
+        articleLikeCount:
+          type: integer
+          format: int64
+        articleViewCount:
+          type: integer
+          format: int64
