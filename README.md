@@ -220,7 +220,7 @@ Write DB와 Read DB의 부하를 완전히 분리하는 효과가 있습니다.
 | BOARD_VIEW    | board-view    | 조회수 이벤트     |
 
 ## Document
-#### [ERD](./doc/erd.md)
+#### [ERD](./doc/ERD.md)
 ### swagger
 #### [swagger guide](./doc/swagger/swagger-guide.md)
 - [Article](./doc/swagger/article-docs.yaml)
